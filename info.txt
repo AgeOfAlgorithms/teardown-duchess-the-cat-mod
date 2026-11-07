@@ -1,0 +1,6 @@
+name = Duchess the Cat
+author = AgeOfAlgorithms and Claude
+description = The AI cat you can talk to - if she feels like answering. Duchess is a plump British Shorthair with opinions: ask her to do something, out loud or in chat, and she decides whether you deserve it. She naps, loafs, perches up high, knocks things over, gets the zoomies, chases the laser pointer's red dot, purrs when petted (E) - until she's had enough. And she talks with Mochi the Corgi: put the two together and listen. Needs Proximity Comms; AI conversations need the free Koetama app on the host. [noupload]
+tags = Gameplay
+preview = preview_td.jpg
+version = 2

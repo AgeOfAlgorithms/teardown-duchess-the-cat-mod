@@ -1,0 +1,21 @@
+<prefab version="1.6.0">
+	<!-- held low at the side, like the game's blowtorch (tool/blowtorch.xml: tp_action at -0.65 below the eye); the bomb's
+	     layout this started from holds it up at face height (-0.1), ready to throw - it looked odd in third person -->
+	<group name="instance=MOD/prefab/laser_tool.xml" pos="0 0 0" rot="0.0 0.0 0.0">
+		<group name="eye_space">
+			<location name="fp_action" tags="name=fp_action" pos="0.28 -0.45 -0.38" rot="5.0 10.0 0.0"/>
+			<location name="tp_action" tags="name=tp_action" pos="0.25 -0.62 -0.22" rot="0.0 0.0 0.0"/>
+			<location name="tp_action_crouch" tags="name=tp_action_crouch" pos="0.25 -0.55 -0.2" rot="0.0 0.0 0.0"/>
+			<location name="tp_run" tags="name=tp_run" pos="0.25 -0.6 -0.2" rot="15.0 5.0 0.0"/>
+			<location name="tp_jump" tags="name=tp_jump" pos="0.3 -0.5 -0.25" rot="10.0 5.0 0.0"/>
+			<location name="tp_crouch" tags="name=tp_crouch" pos="0.3 -0.6 -0.15" rot="-10.0 -10.0 10.0"/>
+			<location name="tp_swim" tags="name=tp_swim" pos="0.3 -0.4 -0.35" rot="10.0 5.0 10.0"/>
+		</group>
+		<group name="tool_space">
+			<body dynamic="false">
+				<vox file="MOD/vox/laser.vox" scale="0.25"/>
+			</body>
+			<location name="tp_action_rh" tags="name=tp_action_rh ik_hand" pos="0.0 0.0 -0.025" rot="0.0 90.0 0.0"/>
+		</group>
+	</group>
+</prefab>
