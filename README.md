@@ -45,6 +45,10 @@ Duchess's replies are written live by an AI model. What players say near her is 
 - **E** - look at Duchess to pet her
 - **6** - your cat tools: **Fish treats** (8, one more every 20 s; **left click** tosses one) and the **Laser pointer** (**hold left click**)
 
+## Community
+
+Join the [Discord community](https://discord.gg/gNpRewdkxf) to post bug reports and suggestions.
+
 ## Install
 
 Subscribe on the [Steam Workshop](https://steamcommunity.com/sharedfiles/filedetails/?id=3833506307), or clone this repository into
