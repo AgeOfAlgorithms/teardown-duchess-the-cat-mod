@@ -2260,8 +2260,38 @@ function PudStateText()
 	return table.concat(parts, " ")
 end
 
+-- the Villagers of Dunmarrow mod (villagers/mods/villagers/API.md): plain host registry keys, so nothing breaks (and
+-- nothing reads them) when it isn't running. She is a lovable, friendly cat to the village; a few villagers feel their own
+-- way (Betty keeps her for the mice, the chapel keeper and the herb-woman like or revere her, the watchman is wary)
+local VL_KIND = "cat"
+local VL_FEEL = {bett = "love", hesper = "like", ysolde = "revere", silas = "wary"}
+local function villagersKeys()
+	local M = PUD
+	local function put(k, v) if GetString(k) ~= v then SetString(k, v) end end
+	local kb = "villagers.kind." .. VL_KIND .. "."
+	put(kb .. "name", "a British Shorthair cat")
+	put(kb .. "feel", "like")
+	put(kb .. "note", "a haughty talking cat with very British manners, called Duchess")
+	if GetFloat(kb .. "danger") ~= 0 then SetFloat(kb .. "danger", 0) end
+	for id, f in pairs(VL_FEEL) do put(kb .. "feel." .. id, f) end
+	local tb = "villagers.thing." .. PUDDING_ID .. "."
+	if M.dead or M.dormant or not (M.anchor and IsHandleValid(M.anchor)) then
+		if not GetBool(tb .. "gone") then SetBool(tb .. "gone", true) end
+		return
+	end
+	if GetBool(tb .. "gone") then ClearKey(tb .. "gone") end
+	put(tb .. "kind", VL_KIND)
+	put(tb .. "name", PUDDING_NAME)
+	if GetInt(tb .. "body") ~= M.anchor then SetInt(tb .. "body", M.anchor) end
+	local doing = M.asleep and "asleep" or M.swim and "swimming" or M.act and ({groom = "grooming", stretch = "stretching", hiss = "hissing",
+		yawn = "yawning", knead = "kneading", zoomies = "racing about"})[M.act.kind] or nil
+	if doing then put(tb .. "doing", doing) else ClearKey(tb .. "doing") end
+end
+PudVillagersKeys = villagersKeys
+
 local function agentKeys()
 	local M = PUD
+	villagersKeys()
 	local function put(k, v) if GetString(reg .. "." .. k) ~= v then SetString(reg .. "." .. k, v) end end
 	put("persona", PERSONA)
 	put("name", PUDDING_NAME)
