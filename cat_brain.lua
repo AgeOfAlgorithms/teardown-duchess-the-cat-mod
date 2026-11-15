@@ -2261,19 +2261,18 @@ function PudStateText()
 end
 
 -- the Villagers of Dunmarrow mod (villagers/mods/villagers/API.md): plain host registry keys, so nothing breaks (and
--- nothing reads them) when it isn't running. She is a lovable, friendly cat to the village; a few villagers feel their own
--- way (Betty keeps her for the mice, the chapel keeper and the herb-woman like or revere her, the watchman is wary)
+-- nothing reads them) when it isn't running. She is a lovable, friendly cat: the kind's general feeling is a hint only -
+-- each villager judges her for themselves on meeting her, from the plain .name / .note / .danger (the user, 2026-11-15:
+-- one-by-one sentiments don't scale, so no villagers.kind.cat.feel.<villager id>)
 local VL_KIND = "cat"
-local VL_FEEL = {bett = "love", hesper = "like", ysolde = "revere", silas = "wary"}
 local function villagersKeys()
 	local M = PUD
 	local function put(k, v) if GetString(k) ~= v then SetString(k, v) end end
 	local kb = "villagers.kind." .. VL_KIND .. "."
 	put(kb .. "name", "a British Shorthair cat")
 	put(kb .. "feel", "like")
-	put(kb .. "note", "a haughty talking cat with very British manners, called Duchess")
+	put(kb .. "note", "a haughty talking cat with very British manners")
 	if GetFloat(kb .. "danger") ~= 0 then SetFloat(kb .. "danger", 0) end
-	for id, f in pairs(VL_FEEL) do put(kb .. "feel." .. id, f) end
 	local tb = "villagers.thing." .. PUDDING_ID .. "."
 	if M.dead or M.dormant or not (M.anchor and IsHandleValid(M.anchor)) then
 		if not GetBool(tb .. "gone") then SetBool(tb .. "gone", true) end
