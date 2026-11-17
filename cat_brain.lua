@@ -2303,6 +2303,7 @@ local function agentKeys()
 	if GetInt("proxchat.version") >= 20 then put("hearagents", "6"); M.hearsAgents = true end
 	put("mode", "speak")
 	put("max_words", "18")
+	if GetBool("proxchat.agentfinal") then put("max_rounds", "2") end      -- (API 23: a turn is the reply + at most one follow-up)
 	put("functions", FUNCTIONS)
 	if M.anchor and IsHandleValid(M.anchor) then put("at", "body:" .. M.anchor)
 	else
@@ -2443,6 +2444,9 @@ local function calls()
 			if not speaker and M.lastSpeaker and now() - M.lastSpeakerT < 30 then speaker = M.lastSpeaker end
 			local ok, ok2, res = pcall(PudCommand, name, args, speaker)
 			SetString(k .. "result", ok and tostring(res) or "error: that didn't work")
+			-- (API 23) what worked ends the turn: the line she said with the call is her reaction, and a follow-up request
+			-- would be one more request AND one more bubble; a refusal still gets its follow-up ("I can't, there's nothing high")
+			if ok and ok2 and GetBool("proxchat.agentfinal") then SetBool(k .. "final", true) end
 		end
 	end
 	M.calls = last
